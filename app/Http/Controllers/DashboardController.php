@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Heading;
+use App\Models\ItemDailyView;
 use App\Models\Link;
 use App\Models\Page;
 use App\Models\Post;
-use App\Models\PostDailyView;
 use App\Models\Project;
 use App\Models\User;
-use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 use Inertia\Inertia;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -19,13 +19,13 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $post_daily_views_data = DB::table('post_daily_views')
+        $item_daily_views_data = FacadesDB::table('item_daily_views')
             ->selectRaw('view_date as date, SUM(view_counts) as total')
             ->where('view_date', '>=', now()->subDays(6)->toDateString())
             ->groupBy('view_date')
             ->orderBy('view_date')
             ->get();
-        $totalPostViews = PostDailyView::query()->sum('view_counts');
+        $totalItemViews = ItemDailyView::query()->sum('view_counts');
 
 
         $post_counts = Post::count();
@@ -40,10 +40,10 @@ class DashboardController extends Controller
 
         // dd($post_daily_views);
         return Inertia::render('admin/dashboard/Index', [
-            'post_daily_views_data' => $post_daily_views_data,
+            'item_daily_views_data' => $item_daily_views_data,
             'featureDatas' => [
                 'post_counts' => $post_counts,
-                'totalPostViews' => $totalPostViews,
+                'totalItemViews' => $totalItemViews,
                 'page_counts' => $page_counts,
                 'link_counts' => $link_counts,
                 'banner_counts' => $banner_counts,
