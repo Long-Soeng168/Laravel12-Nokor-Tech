@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Card } from './ui/card'
 import MyProductCard from './ui/my-product-card'
 import Link from 'next/link'
+import useTranslation from '@/hooks/use-translation'
 
 interface Product {
     id: number;
@@ -37,12 +38,13 @@ interface MyProductCategoryProps {
 
 
 const MyProductCategory: React.FC<MyProductCategoryProps> = ({ products, series, categories }) => {
+    const { t, currentLocale } = useTranslation();
     return (
         <div className='m-4 md:m-0 md:my-4'>
             <ul className="m-4 md:m-0 flex flex-wrap gap-x-8 gap-y-2 text-gray-400 font-semibold text-sm md:text-xl">
                 {series.map((item, index) => (
                     <li key={index} className="">
-                        <p className={item.isActive ? 'text-gray-900' : 'text-gray-400'}>{item.title}</p>
+                        <p className={item.isActive ? 'text-gray-900' : 'text-gray-400'}>{currentLocale === "kh" ? item.title_kh : item.title}</p>
                         {item.isActive && (
                             <div className="w-full h-1 rounded-full bg-blue-500 mt-1"></div>
                         )}
@@ -72,7 +74,7 @@ const MyProductCategory: React.FC<MyProductCategoryProps> = ({ products, series,
                                 {categories[0].name}
                             </p>
                             <Link href="#" className='cursor-pointer absolute bottom-10 text-gray-300 text-xs underline text-center left-1/2 transform -translate-x-1/2'>
-                                See All Products
+                                {t("See All Products")}
                             </Link>
                         </div>
 

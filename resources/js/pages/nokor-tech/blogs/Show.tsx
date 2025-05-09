@@ -7,13 +7,13 @@ import { Calendar } from 'lucide-react';
 import NokorTechLayout from '../layouts/nokor-tech-layout';
 
 const Show = () => {
-    const { currentLocale } = useTranslation();
+    const { t,currentLocale } = useTranslation();
     const { post, relatedPosts, postCategories } = usePage().props;
     return (
         <NokorTechLayout>
             <div className="mx-auto flex max-w-screen-xl flex-col items-start gap-12 px-6 py-6 lg:flex-row lg:py-8 xl:px-0">
                 <div>
-                    <h3 className="line-clamp-2 pb-4 text-4xl font-semibold tracking-tight">{post?.title}</h3>
+                    <h3 className="line-clamp-2 pb-4 text-4xl font-semibold tracking-tight">{currentLocale === "kh" ? post?.title_kh : post?.title}</h3>
                     <img
                         className="mb-4 h-full max-h-[600px] rounded-xl w-full object-cover"
                         src={`/assets/images/posts/${post?.images && post?.images[0]?.image}`}
@@ -23,7 +23,7 @@ const Show = () => {
                         <div dangerouslySetInnerHTML={{ __html: post?.long_description }} />
                     </div>
 
-                    <h2 className="mt-20 text-3xl font-bold tracking-tight">Related Posts</h2>
+                    <h2 className="mt-20 text-3xl font-bold tracking-tight">{t("Related Posts")}</h2>
 
                     <div className="mt-4 space-y-12">
                         {relatedPosts?.map((item, i) => (
@@ -39,8 +39,8 @@ const Show = () => {
                                         </div>
                                     </CardHeader>
                                     <CardContent className="flex flex-col px-0 py-0 sm:px-4">
-                                        <h3 className="line-clamp-2 text-2xl font-semibold tracking-tight">{item?.title}</h3>
-                                        <p className="text-muted-foreground mt-2 line-clamp-3 text-ellipsis">{item?.short_description}</p>
+                                        <h3 className="line-clamp-2 text-2xl font-semibold tracking-tight">{currentLocale === "kh" ? item?.title_kh : item?.title}</h3>
+                                        <p className="text-muted-foreground mt-2 line-clamp-3 text-ellipsis">{currentLocale ==="kh" ?item?.short_description_kh : item?.short_description}</p>
                                         <div className="flex items-center gap-6 py-2">
                                             <Badge className="bg-primary/5 text-primary hover:bg-primary/5 shadow-none">{item?.category?.name}</Badge>
                                             <div className="flex items-center gap-2">
@@ -59,7 +59,7 @@ const Show = () => {
                     </div>
                 </div>
                 <aside className="sticky top-8 w-full shrink-0 lg:max-w-sm">
-                    <h3 className="text-3xl font-bold tracking-tight">Categories</h3>
+                    <h3 className="text-3xl font-bold tracking-tight">{t("Categories")}</h3>
                     <div className="mt-4 grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1">
                         {postCategories?.map((category) => (
                             <Link
@@ -71,7 +71,7 @@ const Show = () => {
                             >
                                 <div className="flex items-center gap-3">
                                     <img className="size-6" src={`/assets/images/post_categories/thumb/${category?.image}`} />
-                                    <span className="font-medium">{category?.name}</span>
+                                    <span className="font-medium">{currentLocale === "kh" ? category?.name_kh : category?.name}</span>
                                 </div>
                                 <Badge className="min-h-6 min-w-6 rounded-full px-1.5">{category?.posts_count}</Badge>
                             </Link>

@@ -9,6 +9,7 @@ import {
 import Image from 'next/image';
 import MyProductCard from './ui/my-product-card';
 import Link from 'next/link';
+import useTranslation from '@/hooks/use-translation';
 
 
 interface Product {
@@ -37,6 +38,7 @@ interface MyTopProductCategoryProps {
 }
 
 const MyTopProductCategory: React.FC<MyTopProductCategoryProps> = ({ products, categories }) => {
+    const { t,currentLocale } = useTranslation();
     return (
         <div className='mx-4 md:mx-0 md:py-4'>
             <Carousel
@@ -49,7 +51,7 @@ const MyTopProductCategory: React.FC<MyTopProductCategoryProps> = ({ products, c
                     <div key={categories[0].id} className=" relative min-w-[280px] hidden md:block">
                         <Image
                             src={categories[0].imageUrl}
-                            alt={categories[0].name}
+                            alt={currentLocale === "kh" ?categories[0].name_kh : categories[0].name}
                             layout="responsive"
                             width={0}
                             height={0}
@@ -60,7 +62,7 @@ const MyTopProductCategory: React.FC<MyTopProductCategoryProps> = ({ products, c
                             {categories[0].name}
                         </p>
                         <Link href="#" className='cursor-pointer absolute bottom-10 text-gray-300 text-xs underline text-center left-1/2 transform -translate-x-1/2'>
-                            See All Products
+                            {t("See All Products")}
                         </Link>
                     </div>
 

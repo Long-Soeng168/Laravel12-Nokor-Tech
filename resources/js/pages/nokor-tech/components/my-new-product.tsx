@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import MyProductCard from './ui/my-product-card';
 import Link from 'next/link';
+import useTranslation from '@/hooks/use-translation';
 
 
 const products = [
@@ -117,12 +118,13 @@ const products = [
 
 
 const MyNewProduct = () => {
+    const { t } = useTranslation()
     return (
         <div className=''>
             <div className='flex justify-between font-semibold pt-8 px-4 md:px-2 lg:px-0'>
-                <h1 className='text-xl'>New Product</h1>
+                <h1 className='text-xl'>{t("New Product")}</h1>
                 <Link href='/products'>
-                    <p className='text-[12px] text-blue-500 underline'>See All New Products</p>
+                    <p className='text-[12px] text-blue-500 underline'>{t("See All New Products")}</p>
                 </Link>
             </div>
             <div className='p-2 md:p-0'>

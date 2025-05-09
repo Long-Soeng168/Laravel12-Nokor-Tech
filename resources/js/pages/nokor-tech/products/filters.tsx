@@ -9,6 +9,7 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
+import useTranslation from '@/hooks/use-translation';
 
 const Filters = () => {
     const { item_categories, item_brands } = usePage().props;
@@ -41,11 +42,14 @@ const Filters = () => {
     const openCategory = item_categories?.find(
         (category) => category.code === selectedCategoryCode || category.children?.some((child) => child.code === selectedCategoryCode),
     )?.code;
+
+    const { t, currentLocale } = useTranslation();
+
     return (
         <div>
             <div className="bg-primary/5 rounded-md px-2 py-2">
                 <div className="flex flex-col items-center">
-                    <h3 className="mb-4 text-xl font-semibold">Filters</h3>
+                    <h3 className="mb-4 text-xl font-semibold">{t("Filters")}</h3>
                 </div>
                 <div>
                     <button
@@ -55,7 +59,7 @@ const Filters = () => {
                         <span className="mr-1 size-6 object-contain">
                             <AlignLeft size={24} className="stroke-primary" />
                         </span>
-                        All Categories
+                        {t("All Categories")}
                     </button>
 
                     {item_categories?.length > 0 &&
@@ -76,7 +80,7 @@ const Filters = () => {
                                             ) : (
                                                 <span className="mr-1 size-6 object-contain" />
                                             )}
-                                            {category?.name}
+                                            {currentLocale === "kh" ? category?.name_kh : category?.name}
                                         </button>
                                         {category?.children?.length > 0 && (
                                             <AccordionTrigger className="hover:bg-secondary cursor-pointer border p-0.5"></AccordionTrigger>
@@ -91,7 +95,7 @@ const Filters = () => {
                                                             className={`${initialQueryParams.get('category_code') == subCategory?.code && 'text-true-primary font-bold underline underline-offset-4'} hover:text-primary w-full cursor-pointer p-1 text-start hover:underline`}
                                                             onClick={() => handleSubmit('category_code', subCategory?.code)}
                                                         >
-                                                            {subCategory?.name}
+                                                            {currentLocale === "kh" ? subCategory?.name_kh : subCategory?.name}
                                                         </button>
                                                     </li>
                                                 ))}
@@ -107,34 +111,34 @@ const Filters = () => {
                 {/* Brands */}
                 <div className="mt-8">
                     <p className="text-primary mb-2 flex items-center gap-1 text-sm font-semibold">
-                        <AlignLeft size={18} /> Brands
+                        <AlignLeft size={18} /> {t("Brands")}
                     </p>
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button variant="outline" role="combobox" aria-expanded={open} className="w-full justify-between">
                                 {value
                                     ? (() => {
-                                          const selectedBrand = item_brands.find((brand) => brand.code === value);
-                                          return selectedBrand ? (
-                                              <div className="flex items-center gap-2">
-                                                  {selectedBrand.image ? (
-                                                      <span className="rounded bg-white p-0.5">
-                                                          <img
-                                                              src={`/assets/images/item_brands/thumb/${selectedBrand.image}`}
-                                                              alt={selectedBrand.name}
-                                                              className="size-7 object-contain"
-                                                          />
-                                                      </span>
-                                                  ) : (
-                                                      <span className="size-8 object-contain" />
-                                                  )}
-                                                  {selectedBrand.name}
-                                              </div>
-                                          ) : (
-                                              'Select brand...'
-                                          );
-                                      })()
-                                    : 'Select brand...'}
+                                        const selectedBrand = item_brands.find((brand) => brand.code === value);
+                                        return selectedBrand ? (
+                                            <div className="flex items-center gap-2">
+                                                {selectedBrand.image ? (
+                                                    <span className="rounded bg-white p-0.5">
+                                                        <img
+                                                            src={`/assets/images/item_brands/thumb/${selectedBrand.image}`}
+                                                            alt={selectedBrand.name}
+                                                            className="size-7 object-contain"
+                                                        />
+                                                    </span>
+                                                ) : (
+                                                    <span className="size-8 object-contain" />
+                                                )}
+                                                {selectedBrand.name}
+                                            </div>
+                                        ) : (
+                                            t('Select brand...')
+                                        );
+                                    })()
+                                    : t('Select brand...')}
 
                                 <ChevronsUpDown className="opacity-50" />
                             </Button>
@@ -143,7 +147,7 @@ const Filters = () => {
                             <Command>
                                 <CommandInput placeholder="Search brand..." className="h-9" />
                                 <CommandList>
-                                    <CommandEmpty>No brand found.</CommandEmpty>
+                                    <CommandEmpty>{t("No brand found.")}</CommandEmpty>
                                     <CommandGroup>
                                         <CommandItem
                                             value=""
@@ -155,7 +159,7 @@ const Filters = () => {
                                             <span className="rounded bg-white p-0.5">
                                                 <AlignLeft size={30} className="stroke-true-primary !size-8 stroke-[1.5]" />
                                             </span>
-                                            All Brands
+                                            {t("All Brands")}
                                             <Check className={cn('ml-auto', value === '' ? 'opacity-100' : 'opacity-0')} />
                                         </CommandItem>
                                         {item_brands?.map((brand) => (
@@ -179,7 +183,7 @@ const Filters = () => {
                                                         <span className="size-8 object-contain" />
                                                     )}
                                                 </span>
-                                                {brand.name}
+                                                {currentLocale === "kh" ? brand.name_kh : brand.name}
                                                 <Check className={cn('ml-auto', value === brand.code ? 'opacity-100' : 'opacity-0')} />
                                             </CommandItem>
                                         ))}

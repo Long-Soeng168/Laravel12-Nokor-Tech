@@ -9,6 +9,7 @@ import {
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
@@ -16,13 +17,14 @@ import { useState } from 'react';
 export function MyCategoriesNav() {
     const { item_categories } = usePage().props;
     const [openDropdown, setOpenDropdown] = useState(false);
+    const { t, currentLocale } = useTranslation();
 
     return (
         <DropdownMenu open={openDropdown} onOpenChange={() => setOpenDropdown(false)}>
             <DropdownMenuTrigger onMouseEnter={() => setOpenDropdown(true)} className="border-none outline-none">
                 <span className="hover:text-primary group relative flex items-center gap-1 rounded p-2">
                     <p className="relative">
-                        Categories
+                        {t("Categories")}
                         <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
                     </p>{' '}
                     <ChevronDown size={18} className="translate-y-[1px]" />
@@ -45,7 +47,7 @@ export function MyCategoriesNav() {
                                             ) : (
                                                 <span className="mr-1 size-6 object-contain" />
                                             )}
-                                            {category?.name}
+                                            {currentLocale === "kh" ? category.name_kh : category?.name}
                                             <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
                                         </p>
                                     </Link>
@@ -56,7 +58,7 @@ export function MyCategoriesNav() {
                                         {category?.children?.map((item) => (
                                             <DropdownMenuItem key={item?.id} asChild>
                                                 <Link prefetch href={`/products?category_code=${item?.code}`} className="cursor-pointer p-2">
-                                                    {item?.name}
+                                                    {currentLocale === "kh" ? item.name_kh : item?.name}
                                                 </Link>
                                             </DropdownMenuItem>
                                         ))}
@@ -77,7 +79,7 @@ export function MyCategoriesNav() {
                                             ) : (
                                                 <span className="mr-1 size-6 object-contain" />
                                             )}
-                                            {category?.name}
+                                            {currentLocale === "kh" ? category?.name_kh : category?.name}
                                             <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
                                         </p>
                                     </Link>

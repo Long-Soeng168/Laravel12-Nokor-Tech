@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Link } from "@inertiajs/react"
 import { useState } from "react"
+import useTranslation from "@/hooks/use-translation"
 
 export function RegisterForm({
   className,
@@ -26,6 +27,7 @@ export function RegisterForm({
   const [error, setError] = useState("");
 
   const handleSubmit = async (event: React.FormEvent) => {
+
     event.preventDefault();
     setError(""); // Clear any previous errors
 
@@ -81,16 +83,18 @@ export function RegisterForm({
         setError('An unexpected error occurred');
       }
     }
-    
+
   };
+
+  const { t } = useTranslation();
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">Register</CardTitle>
+          <CardTitle className="text-2xl">{t("Register")}</CardTitle>
           <CardDescription>
-            Enter your username phone email password  below to Register to your account
+            {("Enter your username phone email password  below to Register to your account")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -98,33 +102,33 @@ export function RegisterForm({
             <div className="flex flex-col gap-6">
               {/* First Name Field */}
               <div className="grid gap-2">
-                <Label htmlFor="firstName">First Name</Label>
+                <Label htmlFor="firstName">{t("First Name")}</Label>
                 <Input
                   id="firstName"
                   type="text"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="First Name"
+                  placeholder={t("First Name")}
                   required
                 />
               </div>
 
               {/* Last Name Field */}
               <div className="grid gap-2">
-                <Label htmlFor="lastName">Last Name</Label>
+                <Label htmlFor="lastName">{t("Last Name")}</Label>
                 <Input
                   id="lastName"
                   type="text"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  placeholder="Last Name"
+                  placeholder={t("Last Name")}
                   required
                 />
               </div>
 
               {/* Email Field */}
               <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="email">{t("Email")}</Label>
                 <Input
                   id="email"
                   type="email"
@@ -151,7 +155,7 @@ export function RegisterForm({
               {/* Password Field */}
               <div className="grid gap-2">
                 <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">{t("Password")}</Label>
                 </div>
                 <Input
                   id="password"
@@ -164,7 +168,7 @@ export function RegisterForm({
 
               {/* Role Field */}
               <div className="grid gap-2">
-                <Label htmlFor="role">Role</Label>
+                <Label htmlFor="role">{t("Role")}</Label>
                 <Input
                   id="role"
                   type="text"
@@ -182,13 +186,13 @@ export function RegisterForm({
 
               {/* Submit Button */}
               <Button type="submit" className="w-full">
-                Register
+                {t("Register")}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
               Have an account?{" "}
               <Link href="/admin/login" className="underline underline-offset-4">
-                Sign In
+                {t("Sign In")}
               </Link>
             </div>
           </form>

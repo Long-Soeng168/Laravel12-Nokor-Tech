@@ -1,3 +1,4 @@
+import useTranslation from "@/hooks/use-translation";
 import React from "react";
 
 interface FeedbackItem {
@@ -8,6 +9,7 @@ interface FeedbackItem {
 }
 
 const MyBlogCard: React.FC<FeedbackItem> = ({ image, text, date }) => {
+    const { t } = useTranslation();
     return (
         <div className="w-full cursor-pointer rounded-md bg-white overflow-hidden hover:shadow-lg transition-shadow duration-300">
             <img
@@ -19,7 +21,7 @@ const MyBlogCard: React.FC<FeedbackItem> = ({ image, text, date }) => {
             />
             <div className="p-2">
                 <p className="text-lg font-medium text-gray-800 line-clamp-2 mb-2">{text}</p>
-                <p className="text-sm text-gray-500 mt-4 text-primary hover:underline cursor-pointer text-end">READ MORE</p>
+                <p className="text-sm text-gray-500 mt-4 text-primary hover:underline cursor-pointer text-end">{t("READ MORE")}</p>
             </div>
         </div>
     );

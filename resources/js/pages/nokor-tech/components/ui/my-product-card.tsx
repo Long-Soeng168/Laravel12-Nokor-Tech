@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { Verified } from 'lucide-react';
 import React from 'react';
 import AddToCartSmall from '../add-to-cart-small';
+import useTranslation from '@/hooks/use-translation';
 
 interface MyProductCardProps {
     product: any;
@@ -9,6 +10,7 @@ interface MyProductCardProps {
 
 const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
     const isInStock = product.stock_status === 'instock';
+    const { t, currentLocale } = useTranslation();
 
     return (
         <div className="relative flex flex-col overflow-hidden rounded-md transition-all duration-300 hover:scale-105">
@@ -44,12 +46,12 @@ const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
                     <div className={`flex items-center justify-start gap-2 py-2 text-sm ${isInStock ? 'text-green-500' : 'text-red-500'}`}>
                         <Verified size={16} />
 
-                        <p>{isInStock ? 'In Stock' : 'Out of Stock'}</p>
+                        <p>{isInStock ? t("In Stock") : t("Out of Stock")}</p>
                     </div>
                 )}
 
                 {/* Product Name */}
-                <p className="line-clamp-3">{product.name}</p>
+                <p className="line-clamp-3">{currentLocale === "kh" ? product.name_kh : product.name}</p>
 
                 {/* Product Price */}
                 <div className="flex items-center gap-2">

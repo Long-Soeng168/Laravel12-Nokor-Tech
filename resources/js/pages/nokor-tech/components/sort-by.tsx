@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select';
+import useTranslation from '@/hooks/use-translation';
 import { router } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 
@@ -27,6 +28,8 @@ const SortBy = () => {
         }
         router.get(currentPath + '?' + queryParams.toString());
     };
+
+    const {t} = useTranslation();
     return (
         <div className="flex items-center gap-2">
             <Select>
@@ -43,15 +46,15 @@ const SortBy = () => {
                 <SelectContent className="w-36">
                     <Button variant="ghost" className="flex w-full justify-start" onClick={() => handleSort('name')}>
                         <ArrowUpDown className="!size-4" />
-                        Name
+                        {t("Name")}
                     </Button>
                     <Button variant="ghost" className="flex w-full justify-start" onClick={() => handleSort('price')}>
                         <ArrowUpDown className="!size-4" />
-                        Price
+                        {t("Price")}
                     </Button>
                     <Button variant="ghost" className="flex w-full justify-start" onClick={() => handleSort('created_at')}>
                         <ArrowUpDown className="!size-4" />
-                        Create Date
+                        {t("Create Date")}
                     </Button>
                 </SelectContent>
             </Select>

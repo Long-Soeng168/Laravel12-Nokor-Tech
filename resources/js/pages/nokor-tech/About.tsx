@@ -1,8 +1,10 @@
 import { usePage } from '@inertiajs/react';
 import NokorTechLayout from './layouts/nokor-tech-layout';
+import useTranslation from '@/hooks/use-translation';
 
 const About = () => {
     const { aboutPages } = usePage().props;
+    const { t,currentLocale } = useTranslation();
 
     return (
         <NokorTechLayout>
@@ -34,12 +36,12 @@ const About = () => {
                             {/* Text */}
                             <div className="w-full lg:w-1/2 lg:pr-16">
                                 <div className="flex items-center gap-4">
-                                    <h3 className="text-4xl font-semibold lg:text-5xl">{page.title}</h3>
+                                    <h3 className="text-4xl font-semibold lg:text-5xl">{currentLocale === "kh" ? t("Our Story") : page?.title}</h3>
                                 </div>
                                 <div
                                     className={`prose ck-content mt-4 max-w-md text-lg ${index % 2 === 0 ? 'text-foreground' : 'text-white'} lg:text-xl`}
                                 >
-                                    <div dangerouslySetInnerHTML={{ __html: page.long_description }} />
+                                    <div dangerouslySetInnerHTML={{ __html: currentLocale==="kh"? t("Our Story Description"): page.long_description }} />
                                 </div>
                             </div>
                         </div>

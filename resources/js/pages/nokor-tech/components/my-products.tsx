@@ -3,8 +3,11 @@ import MyTopProductCategory from './my_top_product_category';
 import MyProductCategory from './my_product_category';
 import BrandLogos from './BrandLogosProps ';
 import FeedbackList from './FeedbackCard';
+import useTranslation from '@/hooks/use-translation';
 
 const Products = () => {
+
+    const {t} = useTranslation();
 
 
     const productstop = [
@@ -277,7 +280,7 @@ const Products = () => {
             reviews: 10,
             instock: false,
         },
-        
+
         // Add more product objects as needed
     ];
 
@@ -370,11 +373,11 @@ const Products = () => {
             <div className=" m-4 md:m-0 flex gap-1 flex-col md:flex-row items-center justify-center bg-blue-100 py-4">
                 <img src="/images/logo/zip.png" alt="" className="w-16 sm:w-20 md:w-24 lg:w-28 xl:w-32" />
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl">
-                    <span className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">own</span>
+                    <span className="font-semibold text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">{t("own")}</span>
                     <span className="text-blue-400 px-2 text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl">|</span>
-                    it now, up to 6 months interest free
+                    {t("it now, up to 6 months interest free")}
                 </p>
-                <span className="text-sm md:text-base lg:text-base xl:text-sm underline">learn more</span>
+                <span className="text-sm md:text-base lg:text-base xl:text-sm underline">{t("learn more")}</span>
             </div>
 
             {/* start top product category */}

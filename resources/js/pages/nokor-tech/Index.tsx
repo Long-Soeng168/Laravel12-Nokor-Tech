@@ -8,6 +8,7 @@ import MyProductList from './components/my-product-list';
 import MyProductListHeader from './components/my-product-list-header';
 import MySlide from './components/my-slide';
 import NokorTechLayout from './layouts/nokor-tech-layout';
+import useTranslation from '@/hooks/use-translation';
 
 interface NokorTechLayoutProps {
     children: ReactNode;
@@ -15,6 +16,7 @@ interface NokorTechLayoutProps {
 
 const Index = ({ children }: NokorTechLayoutProps) => {
     const { topBanners, middleBanners, posts, newArrivals, categoriesWithItems, brandsWithItems } = usePage<any>().props;
+    const { t, currentLocale } = useTranslation();
     return (
         <NokorTechLayout>
             <main className="px-2">
@@ -29,7 +31,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             <MyBrandList items={brandsWithItems} />
                         </div>
 
-                        <MyProductListHeader title="New Arrivals" link="/products" />
+                        <MyProductListHeader title={t("New Arrivals")} link="/products" />
                         <MyProductList items={newArrivals} />
 
                         <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />
@@ -40,7 +42,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                                 <div key={category.id}>
                                     <MyProductListHeader
                                         link={`/products?category_code=${category?.code}`}
-                                        title={category.name}
+                                        title={currentLocale === "kh" ? category.name_kh : category.name}
                                         image={`/assets/images/item_categories/thumb/${category.image}`}
                                     />
                                     <MyProductList items={category.all_items} />
@@ -62,7 +64,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
 
                         {posts?.length > 0 && (
                             <>
-                                <MyProductListHeader title="Blogs" />
+                                <MyProductListHeader title={t("Blogs")} />
                                 <MyBlogList posts={posts} />
                             </>
                         )}

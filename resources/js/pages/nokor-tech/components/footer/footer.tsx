@@ -5,20 +5,22 @@ import { Input } from '../ui/input'
 import AccordionComponent from './my-footer-accordion';
 import AccordionAdreesComponent from './my-footer-address-accordion';
 import Image from 'next/image';
+import useTranslation from '@/hooks/use-translation';
 
+const { t } = useTranslation();
 
 const informations = [
-    { label: 'About Us', href: '/about' },
-    { label: 'Contact', href: '/contact' },
-    { label: 'Blogs', href: '/blogs' },
-    { label: 'Products', href: '/products' },
+    { label: t('About Us'), href: '/about' },
+    { label: t('Contact'), href: '/contact' },
+    { label: t('Blogs'), href: '/blogs' },
+    { label: t('Products'), href: '/products' },
 ];
 
 const categories = [
-    { label: 'Laptop', href: '#' },
-    { label: 'Desktop', href: '#' },
-    { label: 'Network Devices', href: '#' },
-    { label: 'Smartphones', href: '#' },
+    { label: t('Laptop'), href: '#' },
+    { label: t('Desktop'), href: '#' },
+    { label: t('Network Devices'), href: '#' },
+    { label: t('Smartphones'), href: '#' },
     // { label: 'Tablets', href: '#' },
     // { label: 'Printers', href: '#' },
     // { label: 'Monitors', href: '#' },
@@ -52,7 +54,7 @@ const desktopPCs = [
 
 const laptops = [
     {
-        title: 'Laptops',
+        title: t('Laptops'),
         links: [
             { label: 'Everyday Use Notebooks', href: '/laptops/everyday-use' },
             { label: 'MSI Workstation Series', href: '/laptops/msi-workstation' },
@@ -67,10 +69,10 @@ const laptops = [
 const address = {
     title: 'Current Address',
     details: [
-        { label: 'Address', content: '1234 Street Address City Address, 1234' },
-        { label: 'Phones', content: <a href="tel:+0012345678" className='text-blue-500'>(00) 1234 5678</a> },
-        { label: 'E-mail', content: <a href="mailto:shop@email.com" className='text-blue-500'>shop@email.com</a> },
-        { label: 'Website', content: <a href="https://www.example.com" target="_blank" rel="noopener noreferrer" className='text-blue-500'>www.example.com</a> },
+        { label: t('Address'), content: '1234 Street Address City Address, 1234' },
+        { label: t('Phones'), content: <a href="tel:+0012345678" className='text-blue-500'>(00) 1234 5678</a> },
+        { label: t('E-mail'), content: <a href="mailto:shop@email.com" className='text-blue-500'>shop@email.com</a> },
+        { label: t('Website'), content: <a href="https://www.example.com" target="_blank" rel="noopener noreferrer" className='text-blue-500'>www.example.com</a> },
     ]
 };
 
@@ -98,7 +100,7 @@ const Footer = () => {
                     </div>
                     <div className='hidden md:block'>
                         <div>
-                            <p className="text-xl font-semibold text-white">Informations</p>
+                            <p className="text-xl font-semibold text-white">{t("Informations")}</p>
                             <ul className="py-4 text-sm flex flex-col gap-1 text-white">
                                 {informations.map((item, idx) => (
                                     <li key={idx}>
@@ -118,7 +120,7 @@ const Footer = () => {
                     <div className='hidden md:block'>
                         <div>
                             <div>
-                                <p className="text-xl font-semibold text-white">Cateogries</p>
+                                <p className="text-xl font-semibold text-white">{t("Cateogries")}</p>
                                 <ul className="py-4 text-sm flex flex-col gap-1 text-white">
                                     {categories.map((item, idx) => (
                                         <li key={idx}>
@@ -137,7 +139,7 @@ const Footer = () => {
                     <div className='hidden md:block'>
                         <div>
                             <div>
-                                <p className="text-xl font-semibold text-white">Brands</p>
+                                <p className="text-xl font-semibold text-white">{t("Brands")}</p>
                                 <ul className="py-4 text-sm flex flex-col gap-1 text-white">
                                     {brands.map((item, idx) => (
                                         <li key={idx}>

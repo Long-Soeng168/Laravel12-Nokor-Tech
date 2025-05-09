@@ -13,7 +13,7 @@ const Index = () => {
     const { t } = useTranslation();
     const breadcrumbs: BreadcrumbItem[] = [
         {
-            title: t('Video Play Lists'),
+            title: t('Videos Playlists'),
             href: '/admin/video_play_lists',
         },
     ];

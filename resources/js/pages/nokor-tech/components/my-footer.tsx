@@ -1,9 +1,11 @@
 import BackgroundAnimated from '@/components/background-animated';
+import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
 
 // components/Footer.js
 export default function MyFooter() {
     const { application_info, links } = usePage().props;
+    const { t, currentLocale } = useTranslation();
     // console.log(application_info);
     return (
         <footer className="relative border-t border-white/50">
@@ -16,27 +18,27 @@ export default function MyFooter() {
                                 width={65}
                                 height={65}
                                 src={`/assets/images/application_info/thumb/${application_info?.image}`}
-                                alt={`${application_info?.name}'s logo`}
+                                alt={`${currentLocale === "kh"?application_info?.name_kh : application_info?.name}'s logo`}
                                 className="hover:cursor-pointer"
                             />
-                            <p className="text-2xl ">{application_info?.name}</p>
+                            <p className="text-2xl ">{currentLocale === "kh"?application_info?.name_kh :application_info?.name}</p>
                         </div>
                     </div>
                     {/* Company Info */}
                     <div className="lg:justify-self-center">
-                        <h2 className="mb-4 text-xl font-bold">Information</h2>
+                        <h2 className="mb-4 text-xl font-bold">{t("Information")}</h2>
                         <ul className="flex flex-col gap-1 text-white">
                             <li className="flex">
-                                <span>{application_info?.address}</span>
+                                <span>{currentLocale === "kh"?application_info?.address_kh :application_info?.address}</span>
                             </li>
                             <li className="flex">
-                                <span className="mr-2 font-semibold">Phone:</span>
+                                <span className="mr-2 font-semibold">{t("Phone")}:</span>
                                 <a className="hover:underline" href={`tel:${application_info?.phone}`}>
                                     {application_info?.phone}
                                 </a>
                             </li>
                             <li className="flex">
-                                <span className="mr-2 font-semibold">Email:</span>
+                                <span className="mr-2 font-semibold">{t("Email")}:</span>
                                 <a className="hover:underline" href={`mailto:${application_info?.email}`}>
                                     {application_info?.email}
                                 </a>
@@ -46,32 +48,32 @@ export default function MyFooter() {
 
                     {/* Quick Links */}
                     <div className="lg:justify-self-center">
-                        <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
+                        <h3 className="mb-4 text-lg font-semibold">{t("Quick Links")}</h3>
                         <ul className="space-y-2">
                             <li>
                                 <Link prefetch href="/" className="hover:underline">
-                                    Home
+                                    {t("Home")}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/products" className="hover:underline">
-                                    Products
+                                    {t("Products")}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/contact-us" className="hover:underline">
-                                    Contact
+                                    {t("Contact")}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/about-us" className="hover:underline">
-                                    About
+                                    {t("About Us")}
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     <div className="lg:justify-self-center">
-                        <h3 className="mb-4 text-lg font-semibold">Social Media</h3>
+                        <h3 className="mb-4 text-lg font-semibold">{t("Social Media")}</h3>
                         <ul className="space-y-3">
                             {links?.map((item) => (
                                 <li key={item?.id}>
@@ -115,9 +117,9 @@ export default function MyFooter() {
 
                 {/* Footer Bottom */}
                 <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white py-6 md:flex-row">
-                    <p className="text-sm">{application_info?.copyright}</p>
+                    <p className="text-sm">{currentLocale === "kh"? t("All Rights Reserved") : application_info?.copyright}</p>
                     <a className="text-sm" href="https://kampu.solutions">
-                        Developed by : <strong>Kampu Solutions</strong>
+                        {t("Developed by")} : <strong>Kampu Solutions</strong>
                     </a>
                     {/* <div className="flex gap-4">
                         {links?.map((item) => (

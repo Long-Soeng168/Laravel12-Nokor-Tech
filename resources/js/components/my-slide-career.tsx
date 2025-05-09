@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { cn } from '@/lib/utils';
 import * as React from 'react';
+import useTranslation from '@/hooks/use-translation';
 export default function MySlideCareer() {
     const [api, setApi] = React.useState<CarouselApi>();
     const [current, setCurrent] = React.useState(0);
@@ -17,6 +18,7 @@ export default function MySlideCareer() {
             setCurrent(api.selectedScrollSnap() + 1);
         });
     }, [api]);
+    const { t } = useTranslation();
     return (
         <div className="mx-auto max-w-6xl 2xl:max-w-[80vw]">
             <Carousel setApi={setApi} className="w-full max-w-6xl 2xl:max-w-[80vw]" opts={{ loop: true }}>
@@ -55,7 +57,7 @@ export default function MySlideCareer() {
                                                 <Dialog>
                                                     <DialogTrigger>
                                                         <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline 2xl:text-xl">
-                                                            Read More
+                                                            {t("Read More")}
                                                         </span>
                                                     </DialogTrigger>
                                                     <DialogContent

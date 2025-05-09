@@ -7,16 +7,19 @@ import CartButton from './cart-button';
 import { MyCategoriesNav } from './my-categories-nav';
 import { MySearchProducts } from './my-search-products';
 import MySelectLanguageSwitch from '@/components/my-select-language-switch';
+import useTranslation from '@/hooks/use-translation';
 
 const MyHeader = () => {
+    const { t, currentLocale } = useTranslation();
     const { application_info, links, post_counts, item_categories } = usePage().props;
     const currentPath = window.location.pathname;
     const navItems = [
-        { label: 'Products', href: '/products' },
-        { label: 'Blogs', href: '/blogs', condition: post_counts > 0 },
-        { label: 'Contact', href: '/contact-us' },
-        { label: 'About', href: '/about-us' },
+        { label: t('Products'), href: '/products' },
+        { label: t('Blogs'), href: '/blogs', condition: post_counts > 0 },
+        { label: t('Contact'), href: '/contact-us' },
+        { label: t('About'), href: '/about-us' },
     ];
+
 
     return (
         <>
@@ -27,18 +30,18 @@ const MyHeader = () => {
                             width={65}
                             height={65}
                             src={`/assets/images/application_info/thumb/${application_info?.image}`}
-                            alt={`${application_info?.name}'s logo`}
+                            alt={`${application_info?.name_kh}'s logo`}
                             className="hover:cursor-pointer"
                         />
                         <span className="text-lg font-semibold text-white">{application_info?.name}</span>
                     </Link>
                     <div className="items-center gap-2 lg:flex">
                         <div className="hidden items-center lg:flex">
-                            <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{application_info?.address}</div>
+                            <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{currentLocale ==="kh"?application_info?.address_kh : application_info?.address}</div>
                             <span className="pl-2 font-semibold text-white underline hover:cursor-pointer">
                                 <Link href="/contact-us" prefetch>
                                     <button className="relative cursor-pointer underline underline-offset-[5.5px] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white">
-                                        Contact
+                                        {t('Contact Us')}
                                     </button>
                                 </Link>
                             </span>
@@ -48,7 +51,8 @@ const MyHeader = () => {
                         <p className="hidden sm:block">
                             Call Us :{' '}
                             <a className="hover:underline" href={`tel:${application_info?.phone}`}>
-                                {application_info?.phone}
+                                {/* {application_info?.phone} */}
+                               <strong>{t("Phone")} :</strong> {application_info?.phone}
                             </a>
                         </p>
                         <div className="flex gap-2">
@@ -88,31 +92,31 @@ const MyHeader = () => {
                                 </div>
                                 <SheetContent side="left" className="w-64 bg-gray-100 p-6 shadow-md">
                                     <SheetHeader className="mb-4 hidden pb-4">
-                                        <SheetTitle className="text-2xl font-bold text-gray-700">Menu</SheetTitle>
+                                        <SheetTitle className="text-2xl font-bold text-gray-700">{t("Menu")}</SheetTitle>
                                     </SheetHeader>
                                     <ul className="flex flex-col gap-6 font-semibold text-gray-600">
                                         <hr className="mr-6" />
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
                                             <Link prefetch href="/products">
-                                                Products
+                                                {t("Products")}
                                             </Link>
                                         </li>
                                         {post_counts > 0 && (
                                             <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
                                                 <Link prefetch href="/blogs">
-                                                    Blogs
+                                                    {t("Blogs")}
                                                 </Link>
                                             </li>
                                         )}
 
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
                                             <Link prefetch href="/contact-us">
-                                                Contact
+                                                {t("Contact Us")}
                                             </Link>
                                         </li>
                                         <li className="hover:text-primary transition-colors duration-200 hover:cursor-pointer">
                                             <Link prefetch href="/about-us">
-                                                About
+                                                {t("About")}
                                             </Link>
                                         </li>
                                     </ul>
@@ -177,7 +181,7 @@ const MyHeader = () => {
                                 </div>
                                 <SheetContent side="top" className="w-full p-6 shadow-md">
                                     <SheetHeader>
-                                        <SheetTitle>Search Products</SheetTitle>
+                                        <SheetTitle>{t("Search Products")}</SheetTitle>
                                     </SheetHeader>
                                     <MySearchProducts className="border-primary mx-auto max-w-full" />
                                 </SheetContent>

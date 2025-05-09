@@ -23,6 +23,9 @@ import {
 } from "@/components/ui/sidebar"
 import { TeamSwitcher } from "./team-switcher"
 import { NavProjects } from "./nav-projects"
+import useTranslation from "@/hooks/use-translation"
+
+const { t } = useTranslation()
 
 // This is sample data.
 const data = {
@@ -56,21 +59,21 @@ const data = {
       isActive: true,
       items: [
         {
-          title: "Dashboard",
+          title: t("Dashboard"),
           url: "/admin",
         },
         {
-          title: "Products",
+          title: t("Products"),
           url: "/admin/products",
         },
         {
-          title: "Settings",
+          title: t("Settings"),
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: t("Models"),
       url: "#",
       icon: Bot,
       items: [

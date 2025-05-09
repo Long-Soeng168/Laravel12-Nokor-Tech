@@ -1,3 +1,4 @@
+import useTranslation from "@/hooks/use-translation";
 
 const MyBlog = () => {
     const image = [
@@ -27,6 +28,8 @@ const MyBlog = () => {
         },
 
     ];
+
+    const { t } = useTranslation();
 
     return (
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-10 md:px-20">
@@ -66,7 +69,7 @@ const MyBlog = () => {
                         {/* Read More Link */}
                         <div className="mt-4">
                             <a href={`/detail/${item.id}`} className="flex items-center font-semibold text-blue-600 hover:underline">
-                                Continue Reading <span className="ml-2">→</span>
+                                {t("Continue Reading")} <span className="ml-2">→</span>
                             </a>
                         </div>
                     </div>
