@@ -13,7 +13,7 @@ const AddNewButton = () => {
                 <span className="border-primary rounded-xl border p-1 transition-all duration-300 hover:rounded-lg hover:border-white hover:p-0 hover:m-1 ">
                     <Button onClick={() => setIsOpen(true)}>
                         <Plus />
-                        Add New
+                        {t("Add New")}
                     </Button>
                 </span>
             </DialogTrigger>
