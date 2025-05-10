@@ -21,15 +21,15 @@ export default function MyFilter() {
     const { t } = useTranslation();
     const status_items = [
         {
-            label: 'All',
+            label: t('All'),
             value: '',
         },
         {
-            label: 'Active',
+            label: t('Active'),
             value: 'active',
         },
         {
-            label: 'Inactive',
+            label: t('Inactive'),
             value: 'inactive',
         },
     ] as const;
