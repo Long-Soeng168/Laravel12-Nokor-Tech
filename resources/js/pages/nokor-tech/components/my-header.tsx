@@ -33,11 +33,11 @@ const MyHeader = () => {
                             alt={`${application_info?.name_kh}'s logo`}
                             className="hover:cursor-pointer"
                         />
-                        <span className="text-lg font-semibold text-white">{application_info?.name}</span>
+                        <span className="text-lg font-semibold text-white">{currentLocale === "kh" ? application_info.name_kh : application_info?.name}</span>
                     </Link>
                     <div className="items-center gap-2 lg:flex">
                         <div className="hidden items-center lg:flex">
-                            <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{currentLocale ==="kh"?application_info?.address_kh : application_info?.address}</div>
+                            <div className="max-w-xs font-semibold whitespace-pre-wrap text-white/70">{currentLocale === "kh" ? application_info?.address_kh : application_info?.address}</div>
                             <span className="pl-2 font-semibold text-white underline hover:cursor-pointer">
                                 <Link href="/contact-us" prefetch>
                                     <button className="relative cursor-pointer underline underline-offset-[5.5px] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.65_0.05_0.36_1)] hover:after:origin-bottom-left hover:after:scale-x-100 dark:after:bg-white">
@@ -52,7 +52,7 @@ const MyHeader = () => {
                             Call Us :{' '}
                             <a className="hover:underline" href={`tel:${application_info?.phone}`}>
                                 {/* {application_info?.phone} */}
-                               <strong>{t("Phone")} :</strong> {application_info?.phone}
+                                <strong>{t("Phone")} :</strong> {application_info?.phone}
                             </a>
                         </p>
                         <div className="flex gap-2">
@@ -138,7 +138,7 @@ const MyHeader = () => {
                                                         href={`/products?category_code=${category.code}`}
                                                         className="group hover:text-primary relative mx-2 cursor-pointer"
                                                     >
-                                                        {category.name}
+                                                        {currentLocale === "kh" ? category.name_kh : category.name}
                                                         <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
                                                     </Link>
                                                 </li>
@@ -154,15 +154,13 @@ const MyHeader = () => {
                                                 prefetch
                                                 key={index}
                                                 href={item.href}
-                                                className={`group relative mx-2 cursor-pointer ${
-                                                    currentPath.startsWith(item.href) ? 'text-primary font-bold' : ''
-                                                } hover:text-primary`}
+                                                className={`group relative mx-2 cursor-pointer ${currentPath.startsWith(item.href) ? 'text-primary font-bold' : ''
+                                                    } hover:text-primary`}
                                             >
                                                 {item.label}
                                                 <span
-                                                    className={`bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full ${
-                                                        currentPath.startsWith(item.href) ? 'w-full' : ''
-                                                    }`}
+                                                    className={`bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full ${currentPath.startsWith(item.href) ? 'w-full' : ''
+                                                        }`}
                                                 ></span>
                                             </Link>
                                         </li>

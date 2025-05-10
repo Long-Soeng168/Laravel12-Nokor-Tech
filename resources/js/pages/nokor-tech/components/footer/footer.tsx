@@ -90,7 +90,7 @@ const Footer = () => {
                             alt=""
                             className=" hover:cursor-pointer"
                         />
-                        <p className='font-semibold text-2xl'>Nokor-Tech</p>
+                        <p className='font-semibold text-2xl'>{t("Nokor-Tech")}</p>
                     </div>
                 </header>
                 <div className='grid grid-cols-4'>
