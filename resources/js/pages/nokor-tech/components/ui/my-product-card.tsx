@@ -51,7 +51,7 @@ const MyProductCard: React.FC<MyProductCardProps> = ({ product }) => {
                 )}
 
                 {/* Product Name */}
-                <p className="line-clamp-3">{currentLocale === "kh" ? product.name_kh : product.name}</p>
+                <p className="line-clamp-3">{currentLocale === "kh" ? product.name : product.name}</p>
 
                 {/* Product Price */}
                 <div className="flex items-center gap-2">

@@ -23,6 +23,7 @@ import * as z from 'zod';
 
 const formSchema = z.object({
     name: z.string().min(1).max(255),
+    price: z.string().max(255),
     short_description: z.string().max(500).optional(),
     code: z.string().max(255).optional(),
     link: z.string().max(255).optional(),
@@ -62,6 +63,7 @@ export default function Create() {
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: editData?.name || '',
+            price: editData?.price?.toString() || '',
             code: editData?.code || '',
             short_description: editData?.short_description || '',
             link: editData?.link || '',
@@ -201,7 +203,7 @@ export default function Create() {
                         </div> */}
                     </div>
 
-                    <div className="grid grid-cols-12 gap-8">
+                    <div className="grid grid-cols-12 gap-4">
                         <div className="col-span-6">
                             <FormField
                                 control={form.control}
@@ -214,6 +216,22 @@ export default function Create() {
                                         </FormControl>
                                         <FormDescription>{t('Can use product Barcode.')}</FormDescription>
                                         <FormMessage>{errors.code && <div>{errors.code}</div>}</FormMessage>
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <div className="col-span-6">
+                            <FormField
+                                control={form.control}
+                                name="price"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('price')}</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder={t('Price ($)')} type="number" {...field} />
+                                        </FormControl>
+                                        <FormDescription>{t('Product Price.')}</FormDescription>
+                                        <FormMessage>{errors.price && <div>{errors.price}</div>}</FormMessage>
                                     </FormItem>
                                 )}
                             />

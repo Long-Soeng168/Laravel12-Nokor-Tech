@@ -84,6 +84,7 @@ class ItemController extends Controller implements HasMiddleware
     {
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
+            'price' => 'nullable|numeric',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:1000',
@@ -180,6 +181,7 @@ class ItemController extends Controller implements HasMiddleware
         // dd($request->all());
         $validated = $request->validate([
             'code' => 'nullable|string|max:255',
+            'price' => 'nullable|numeric',
             'name' => 'required|string|max:255',
             'name_kh' => 'nullable|string|max:255',
             'short_description' => 'nullable|string|max:1000',
