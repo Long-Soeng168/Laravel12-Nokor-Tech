@@ -88,7 +88,7 @@ const MyTableData = () => {
                                     <ArrowUpDown size={16} /> {t('Brand Code')}
                                 </span>
                             </TableHead>
-                            <TableHead onClick={() => handleSort('model_code')}>
+                            {/* <TableHead onClick={() => handleSort('model_code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Model Code')}
                                 </span>
@@ -97,7 +97,7 @@ const MyTableData = () => {
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Body Type Code')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('total_view_counts')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Total View')}
@@ -215,8 +215,8 @@ const MyTableData = () => {
                                 </TableCell>
                                 <TableCell>{item.category_code || '---'}</TableCell>
                                 <TableCell>{item.brand_code || '---'}</TableCell>
-                                <TableCell>{item.model_code || '---'}</TableCell>
-                                <TableCell>{item.body_type_code || '---'}</TableCell>
+                                {/* <TableCell>{item.model_code || '---'}</TableCell>
+                                <TableCell>{item.body_type_code || '---'}</TableCell> */}
                                 <TableCell>
                                     {item.total_view_counts ? <span className="flex items-center gap-1">{item.total_view_counts}</span> : '---'}
                                 </TableCell>

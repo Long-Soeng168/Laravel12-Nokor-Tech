@@ -140,9 +140,9 @@ class NokorTechController extends Controller
 
     public function blog_show($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $postCategories = PostCategory::where('status', 'active')->withCount('posts')->orderBy('order_index')->get();
-        $relatedPosts = Post::with('category', 'images')->where('id', '!=', $id)->where('category_code', $post->category_code)->orderBy('id', 'desc')->limit(6)->get();
+        $relatedPosts = Post::with('category', 'images')->where('id', '!=', $id)->where('category_code', $post->category_code ?? null)->orderBy('id', 'desc')->limit(6)->get();
 
         return Inertia::render("nokor-tech/blogs/Show", [
             "post" => $post->load('images', 'category'),
@@ -206,8 +206,8 @@ class NokorTechController extends Controller
 
     public function product_show($id)
     {
-        $itemShow = Item::find($id);
-        $relatedItems = Item::with('category', 'images')->where('id', '!=', $id)->where('category_code', $itemShow->category_code)->orderBy('id', 'desc')->limit(12)->get();
+        $itemShow = Item::findOrFail($id);
+        $relatedItems = Item::with('category', 'images')->where('id', '!=', $id)->where('category_code', $itemShow->category_code ?? null)->orderBy('id', 'desc')->limit(12)->get();
 
         $date = now()->toDateString();
         $view = ItemDailyView::firstOrCreate(

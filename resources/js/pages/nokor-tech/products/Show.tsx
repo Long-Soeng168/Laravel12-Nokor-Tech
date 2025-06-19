@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
                             {itemShow?.short_description && (
                                 <div>
                                     <hr className="my-8" />
-                                    <p className="text-foreground mb-2 text-lg font-semibold">Features:</p>
+                                    <p className="text-foreground mb-2 text-lg font-semibold">Key Specifications:</p>
                                     <div className="whitespace-pre-line">{itemShow?.short_description}</div>
                                 </div>
                             )}
