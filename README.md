@@ -21,3 +21,4 @@ How to setup project
 # Laravel12
 
 - npm i --legacy-peer-deps# Laravel12-Nokor-Tech
+# Laravel12-School-Management
