@@ -1,16 +1,21 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Link, usePage } from '@inertiajs/react';
+import useTranslation from '@/hooks/use-translation';
+import { Head, Link, usePage } from '@inertiajs/react';
 import AddToCart from '../components/add-to-cart';
 import CarouselWithThumbs from '../components/CarouselWithThumbs';
 import MyProductList from '../components/my-product-list';
 import MyProductListHeader from '../components/my-product-list-header';
 import NokorTechLayout from '../layouts/nokor-tech-layout';
-import useTranslation from '@/hooks/use-translation';
 const ProductDetailPage = () => {
     const { itemShow, relatedItems } = usePage().props;
     const { t } = useTranslation();
     return (
         <NokorTechLayout>
+            <Head>
+                <title>{itemShow?.name}</title>
+                <meta name="description" content={itemShow?.short_description || ''} />
+            </Head>
+
             <div>
                 <div className="mx-auto max-w-screen-xl overflow-hidden">
                     <div className="flex flex-col md:flex-row">
@@ -26,7 +31,7 @@ const ProductDetailPage = () => {
                             <h1 className="text-foreground text-2xl font-bold md:text-3xl">{itemShow?.name}</h1>
                             {itemShow?.brand?.name && (
                                 <p className="text-foreground mt-2 text-base">
-                                    {t("Brand")}:{' '}
+                                    {t('Brand')}:{' '}
                                     <Link className="text-primary hover:underline" href={`/products?brand_code=${itemShow?.brand?.code}`}>
                                         {itemShow?.brand?.name}
                                     </Link>
@@ -34,13 +39,17 @@ const ProductDetailPage = () => {
                             )}
                             {itemShow?.category?.name && (
                                 <p className="text-foreground mt-2 text-base">
-                                    {t("Category")}:{' '}
+                                    {t('Category')}:{' '}
                                     <Link className="text-primary hover:underline" href={`/products?category_code=${itemShow?.category?.code}`}>
                                         {itemShow?.category?.name}
                                     </Link>
                                 </p>
                             )}
-                            {itemShow?.code && <p className="text-foreground mt-2 text-base">{t("Product Code")}: {itemShow?.code}</p>}
+                            {itemShow?.code && (
+                                <p className="text-foreground mt-2 text-base">
+                                    {t('Product Code')}: {itemShow?.code}
+                                </p>
+                            )}
 
                             <div className="mt-6 mb-4">
                                 <p className="text-2xl font-bold text-red-600">${itemShow?.price}</p>
@@ -66,7 +75,7 @@ const ProductDetailPage = () => {
                                 <AccordionItem value="description" className="border-none">
                                     <AccordionTrigger className="border-primary my-4 rounded-none border-b-2 p-0 hover:no-underline">
                                         <span className="bg-primary text-primary-foreground rounded-md rounded-bl-none px-8 py-1 text-lg font-bold">
-                                            {t("Descriptions")}
+                                            {t('Descriptions')}
                                         </span>
                                     </AccordionTrigger>
                                     <AccordionContent className="text-base">

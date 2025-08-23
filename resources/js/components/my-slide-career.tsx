@@ -56,7 +56,7 @@ export default function MySlideCareer() {
                                             <div className="mt-2">
                                                 <Dialog>
                                                     <DialogTrigger>
-                                                        <span className="font-proxima-nova-regular bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline 2xl:text-xl">
+                                                        <span className="bg-primary px-4 py-1 text-xs text-white capitalize transition duration-200 hover:underline 2xl:text-xl">
                                                             {t("Read More")}
                                                         </span>
                                                     </DialogTrigger>

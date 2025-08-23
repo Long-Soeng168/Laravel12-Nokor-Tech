@@ -1,79 +1,112 @@
-import BackgroundAnimated from '@/components/background-animated';
+import PWAInstallPrompt from '@/components/PWAInstallPrompt';
 import useTranslation from '@/hooks/use-translation';
 import { Link, usePage } from '@inertiajs/react';
+import { Separator } from './ui/separator';
 
-// components/Footer.js
 export default function MyFooter() {
     const { application_info, links } = usePage().props;
-    const { t, currentLocale } = useTranslation();
-    // console.log(application_info);
+    const { t } = useTranslation();
     return (
-        <footer className="relative border-t border-white/50">
-            <BackgroundAnimated />
-            <div className="relative z-10 mx-auto max-w-7xl px-4 pt-12 text-white sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+        <footer className="bg-true-primary dark relative border-t text-white dark:bg-black">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 pt-14 pb-20 sm:px-6 lg:px-8">
+                {/* Background Banner */}
+                <div className="absolute right-0 bottom-0 z-0 h-auto w-full max-w-[2000px]">
+                    <img
+                        src="/assets/backgrounds/footer_banner_for_light.png"
+                        alt=""
+                        className="z-0 w-[100%] max-w-7xl object-contain opacity-[15%] dark:hidden"
+                    />
+                    <img
+                        src="/assets/backgrounds/footer_banner_for_dark.png"
+                        alt=""
+                        className="z-0 hidden w-[100%] max-w-7xl object-contain opacity-[40%] lg:opacity-[15%] dark:block"
+                    />
+                </div>
+                <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-4">
                     <div className="justify-self-center">
-                        <div className="flex flex-col items-center justify-center">
-                            <img
-                                width={65}
-                                height={65}
-                                src={`/assets/images/application_info/thumb/${application_info?.image}`}
-                                alt={`${currentLocale === "kh"?application_info?.name_kh : application_info?.name}'s logo`}
-                                className="hover:cursor-pointer"
-                            />
-                            <p className="text-2xl ">{currentLocale === "kh"?application_info?.name_kh :application_info?.name}</p>
-                        </div>
+                        {application_info?.image && (
+                            <div className="flex flex-col items-center justify-center">
+                                <img
+                                    width={65}
+                                    height={65}
+                                    src={`/assets/images/application_info/thumb/${application_info?.image}`}
+                                    alt={`${application_info?.name}'s logo`}
+                                    className="rounded-full hover:cursor-pointer"
+                                />
+                                <p className="mt-2 text-2xl font-bold">{application_info?.name}</p>
+                            </div>
+                        )}
                     </div>
                     {/* Company Info */}
                     <div className="lg:justify-self-center">
-                        <h2 className="mb-4 text-xl font-bold">{t("Information")}</h2>
-                        <ul className="flex flex-col gap-1 text-white">
+                        <h3 className="mb-4 text-xl font-bold">
+                            Information <Separator className="w-auto bg-white" />
+                        </h3>
+                        <ul className="flex flex-col gap-1">
                             <li className="flex">
-                                <span>{currentLocale === "kh"?application_info?.address_kh :application_info?.address}</span>
+                                <span>{application_info?.address}</span>
                             </li>
                             <li className="flex">
-                                <span className="mr-2 font-semibold">{t("Phone")}:</span>
+                                <span className="mr-2 font-semibold">{t('Phone')}:</span>
                                 <a className="hover:underline" href={`tel:${application_info?.phone}`}>
                                     {application_info?.phone}
                                 </a>
                             </li>
                             <li className="flex">
-                                <span className="mr-2 font-semibold">{t("Email")}:</span>
+                                <span className="mr-2 font-semibold">{t('Email')}:</span>
                                 <a className="hover:underline" href={`mailto:${application_info?.email}`}>
                                     {application_info?.email}
                                 </a>
                             </li>
                         </ul>
+                        <div className="mt-8 w-auto">
+                            <PWAInstallPrompt />
+                        </div>
                     </div>
 
                     {/* Quick Links */}
                     <div className="lg:justify-self-center">
-                        <h3 className="mb-4 text-lg font-semibold">{t("Quick Links")}</h3>
+                        <h3 className="mb-4 text-xl font-bold">
+                            {t('Quick Links')} <Separator className="w-auto bg-white" />
+                        </h3>
+
                         <ul className="space-y-2">
                             <li>
                                 <Link prefetch href="/" className="hover:underline">
-                                    {t("Home")}
+                                    {t('Home')}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/products" className="hover:underline">
-                                    {t("Products")}
+                                    {t('Products')}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link prefetch href="/shops" className="hover:underline">
+                                    {t('Shops')}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link prefetch href="/privacy" className="hover:underline">
+                                    {t('Privacy')}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/contact-us" className="hover:underline">
-                                    {t("Contact")}
+                                    {t('Contact')}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/about-us" className="hover:underline">
-                                    {t("About Us")}
+                                    {t('About')}
                                 </Link>
                             </li>
                         </ul>
                     </div>
                     <div className="lg:justify-self-center">
-                        <h3 className="mb-4 text-lg font-semibold">{t("Social Media")}</h3>
+                        <h3 className="mb-4 text-xl font-bold">
+                            {t('Social Media')} <Separator className="w-auto bg-white" />
+                        </h3>
                         <ul className="space-y-3">
                             {links?.map((item) => (
                                 <li key={item?.id}>
@@ -91,48 +124,21 @@ export default function MyFooter() {
                             ))}
                         </ul>
                     </div>
-
-                    {/* Customer Service */}
-                    {/* <div className="lg:justify-self-center">
-                        <h3 className="mb-4 text-lg font-semibold">Features</h3>
-                        <ul className="space-y-2">
-                            <li>
-                                <a href="#" className="hover:underline">
-                                    Product Support
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:underline">
-                                    Fast Delivery
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:underline">
-                                    Easy Returns
-                                </a>
-                            </li>
-                        </ul>
-                    </div> */}
                 </div>
-
+            </div>
+            <div className="relative z-10 mx-auto max-w-7xl pb-18 sm:pb-0">
                 {/* Footer Bottom */}
-                <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t border-white py-6 md:flex-row">
-                    <p className="text-sm">{currentLocale === "kh"? t("All Rights Reserved") : application_info?.copyright}</p>
-                    <a className="text-sm" href="https://kampu.solutions">
-                        {t("Developed by")} : <strong>Kampu Solutions</strong>
-                    </a>
-                    {/* <div className="flex gap-4">
-                        {links?.map((item) => (
-                            <a href={item?.link ? item?.link : '#'}>
-                                <img
-                                    width={32}
-                                    height={32}
-                                    src={`/assets/images/links/thumb/${item?.image}`}
-                                    alt=""
-                                    className="transition-all duration-300 hover:scale-125 hover:cursor-pointer"
-                                />
-                            </a>
-                        ))}
+                <div className="flex flex-col items-center justify-between gap-4 py-6 md:flex-row">
+                    <p className="text-sm">{application_info?.copyright}</p>
+                    {/* <a className="text-sm" href="#">
+                        {t('Developed by')} : <strong></strong>
+                    </a> */}
+                    {/* <div className="flex items-center space-x-[10px] text-[18px] font-semibold">
+                        <p>We accept:</p>
+                        <div className="flex gap-[10px]">
+                            <img className="h-[40px]" src="/assets/ABA_PAY.svg" alt="" />
+                            <img className="h-[40px]" src="/assets/KHQR.svg" alt="" />
+                        </div>
                     </div> */}
                 </div>
             </div>

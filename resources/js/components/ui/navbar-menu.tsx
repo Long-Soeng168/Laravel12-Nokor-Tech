@@ -28,7 +28,7 @@ export const MenuItem = ({
       <motion.a
         // href={item.toLowerCase() === "about us" ? '/' : `/${item.toLowerCase().replace(/\s+/g, '-')}`}
         transition={{ duration: 0.3 }}
-        className="bg-true-primary text-sm whitespace-nowrap 2xl:text-xl 2xl:px-8 px-6 py-0.5 cursor-pointer font-proxima-nova-regular text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
+        className="bg-true-primary text-sm whitespace-nowrap 2xl:text-xl 2xl:px-8 px-6 py-0.5 cursor-pointer text-white hover:opacity-[0.9] dark:text-white flex gap-0.5 items-center"
       >
         {item}  <ChevronUp className="h-4 w-4 text-white dark:text-gray-300 transition-transform duration-300 rotate-180" />
       </motion.a>
@@ -47,7 +47,7 @@ export const MenuItem = ({
               >
                 <motion.div
                   layout // layout ensures smooth animation
-                  className="h-full p-2 font-proxima-nova-bold w-full"
+                  className="h-full p-2 w-full"
                 >
                   {children}
                 </motion.div>
@@ -102,7 +102,7 @@ export const ProductItem = ({
         className="shrink-0 rounded-md object-cover shadow-xl"
       />
       <div>
-        <h4 className="text-xl font-proxima-nova-bold font-bold mb-1 text-black dark:text-white">
+        <h4 className="text-xl font-bold mb-1 text-black dark:text-white">
           {title}
         </h4>
         <p className="text-neutral-700 text-sm max-w-[10rem] dark:text-neutral-300">

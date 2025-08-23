@@ -1,4 +1,5 @@
-import { usePage } from '@inertiajs/react';
+import useTranslation from '@/hooks/use-translation';
+import { Head, usePage } from '@inertiajs/react';
 import { ReactNode } from 'react';
 import MyBlogList from './components/my-blogs-list';
 import MyBrandList from './components/my-brand-list';
@@ -8,7 +9,6 @@ import MyProductList from './components/my-product-list';
 import MyProductListHeader from './components/my-product-list-header';
 import MySlide from './components/my-slide';
 import NokorTechLayout from './layouts/nokor-tech-layout';
-import useTranslation from '@/hooks/use-translation';
 
 interface NokorTechLayoutProps {
     children: ReactNode;
@@ -19,6 +19,18 @@ const Index = ({ children }: NokorTechLayoutProps) => {
     const { t, currentLocale } = useTranslation();
     return (
         <NokorTechLayout>
+            <Head>
+                <title>Mekongtech Store | Laptops, PCs & Networking in Phnom Penh, Cambodia</title>
+                <meta
+                    name="description"
+                    content="Mekongtech Store - Leading computer & electronics shop in Phnom Penh, Cambodia. Buy laptops, PCs, networking equipment, and gaming accessories at the best prices."
+                />
+                <meta
+                    name="keywords"
+                    content="Mekongtech Store, computer store Phnom Penh, laptop Cambodia, networking equipment Cambodia, PC shop Phnom Penh, gaming accessories Cambodia, electronics shop Cambodia"
+                />
+            </Head>
+
             <main className="px-2">
                 {children}
 
@@ -31,7 +43,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                             <MyBrandList items={brandsWithItems} />
                         </div>
 
-                        <MyProductListHeader title={t("New Arrivals")} link="/products" />
+                        <MyProductListHeader title={t('New Arrivals')} link="/products" />
                         <MyProductList items={newArrivals} />
 
                         <MyMiddleSlide slides={middleBanners} path="/assets/images/banners/thumb/" />
@@ -42,7 +54,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
                                 <div key={category.id}>
                                     <MyProductListHeader
                                         link={`/products?category_code=${category?.code}`}
-                                        title={currentLocale === "kh" ? category.name_kh : category.name}
+                                        title={currentLocale === 'kh' ? category.name_kh : category.name}
                                         image={`/assets/images/item_categories/thumb/${category.image}`}
                                     />
                                     <MyProductList items={category.all_items} />
@@ -64,7 +76,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
 
                         {posts?.length > 0 && (
                             <>
-                                <MyProductListHeader title={t("Blogs")} />
+                                <MyProductListHeader title={t('Blogs')} />
                                 <MyBlogList posts={posts} />
                             </>
                         )}

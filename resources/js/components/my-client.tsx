@@ -59,7 +59,7 @@ export function MyClient() {
                                     <img src={item.image} alt={item.alt} className=" h-48 w-full object-cover" />
                                     {/* <div className="absolute top-0 left-0 bottom-0 h-full w-[30%]" style={{ background: item.bg }}>
                                     <div className="mx-auto flex justify-center items-center max-w-screen-lg sm:max-w-screen-xl md:max-w-screen-2xl h-full px-4 sm:px-8 md:px-12">
-                                        <h3 className="max-w-full text-sm text-white sm:text-lg md:text-2xl xl:text-2xl font-proxima-nova-regular" dangerouslySetInnerHTML={{ __html: item.short }} />
+                                        <h3 className="max-w-full text-sm text-white sm:text-lg md:text-2xl xl:text-2xl" dangerouslySetInnerHTML={{ __html: item.short }} />
                                     </div>
                                 </div> */}
                                 </Card>

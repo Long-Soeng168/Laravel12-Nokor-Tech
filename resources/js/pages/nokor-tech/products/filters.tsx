@@ -47,7 +47,7 @@ const Filters = () => {
 
     return (
         <div>
-            <div className="bg-primary/5 rounded-md px-2 py-2">
+            <div className="bg-accent rounded-md px-2 py-2">
                 <div className="flex flex-col items-center">
                     <h3 className="mb-4 text-xl font-semibold">{t("Filters")}</h3>
                 </div>

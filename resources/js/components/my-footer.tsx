@@ -1,7 +1,7 @@
 const MyFooter = () => {
     return (
         <>
-            <footer className="font-proxima-nova-regular py-10 mt-20 text-black">
+            <footer className="py-10 mt-20 text-black">
                 <div className="grid max-w-[2000px] grid-cols-1  mx-auto px-4 lg:px-16 lg:grid-cols-4 gap-8">
                     {/* Contact Section */}
                     <div className="grid grid-cols-1 w-full">

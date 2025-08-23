@@ -53,7 +53,7 @@ export default function Page() {
                                     <div
                                         className={`text-muted-foreground mb-4 text-base ${currentLocale == 'kh' ? 'font-koulen-regular leading-[2]' : 'font-semibold'}`}
                                     >
-                                        {t('Viewport width')}: <span className="text-primary font-poppins-regular">{panelWidth} px</span>
+                                        {t('Viewport width')}: <span className="text-primary">{panelWidth} px</span>
                                     </div>
                                     <div dangerouslySetInnerHTML={{ __html: data }} />
                                 </TabsContent>
