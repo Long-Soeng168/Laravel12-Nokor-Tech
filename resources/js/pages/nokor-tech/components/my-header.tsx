@@ -31,7 +31,7 @@ const MyHeader = () => {
                             height={65}
                             src={`/assets/images/application_info/thumb/${application_info?.image}`}
                             alt={`${application_info?.name_kh}'s logo`}
-                            className="hover:cursor-pointer"
+                            className="hover:cursor-pointer p-2 rounded-xl"
                         />
                         <span className="text-lg font-semibold text-white">{currentLocale === "kh" ? application_info.name_kh : application_info?.name}</span>
                     </Link>
