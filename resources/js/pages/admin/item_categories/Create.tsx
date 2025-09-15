@@ -422,7 +422,7 @@ export default function Create({
                     )}
                 />
 
-                <FormField
+                {/* <FormField
                     control={form.control}
                     name="banner"
                     render={({ field }) => (
@@ -477,7 +477,7 @@ export default function Create({
                             )}
                         </FormItem>
                     )}
-                />
+                /> */}
                 {progress && <ProgressWithValue value={progress.percentage} position="start" />}
                 {setIsOpen && <MyDialogCancelButton onClick={() => setIsOpen(false)} />}
 

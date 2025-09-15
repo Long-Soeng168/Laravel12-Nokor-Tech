@@ -5,16 +5,16 @@ import MyUpdateStatusButton from '@/components/my-update-status-button';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import usePermission from '@/hooks/use-permission';
+import useTranslation from '@/hooks/use-translation';
 import { router, usePage } from '@inertiajs/react';
 import { ArrowUpDown } from 'lucide-react';
 import { useState } from 'react';
 import EditButton from './edit-button';
 import ViewButton from './view-button';
-import useTranslation from '@/hooks/use-translation';
 
 const MyTableData = () => {
     const hasPermission = usePermission();
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     const { tableData } = usePage().props;
     const queryParams = new URLSearchParams(window.location.search);
@@ -53,12 +53,12 @@ const MyTableData = () => {
                             <TableHead className="w-[50px]">{t('No')}</TableHead>
                             <TableHead className="text-left">{t('Action')}</TableHead>
                             <TableHead>{t('Image')}</TableHead>
-                            <TableHead>{t('Banner')}</TableHead>
-                            <TableHead onClick={() => handleSort('code')}>
+                            {/* <TableHead>{t('Banner')}</TableHead> */}
+                            {/* <TableHead onClick={() => handleSort('code')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Code')}
                                 </span>
-                            </TableHead>
+                            </TableHead> */}
                             <TableHead onClick={() => handleSort('name')}>
                                 <span className="flex cursor-pointer items-center">
                                     <ArrowUpDown size={16} /> {t('Name')}
@@ -157,8 +157,7 @@ const MyTableData = () => {
                                         />
                                     )}
                                 </TableCell>
-                                <TableCell>
-                                    {' '}
+                                {/* <TableCell>
                                     {item.banner ? (
                                         <button
                                             onClick={() => {
@@ -184,8 +183,8 @@ const MyTableData = () => {
                                             className="size-10 object-contain"
                                         />
                                     )}
-                                </TableCell>
-                                <TableCell>{item.code || '---'}</TableCell>
+                                </TableCell> */}
+                                {/* <TableCell>{item.code || '---'}</TableCell> */}
                                 <TableCell>{item.name || '---'}</TableCell>
                                 <TableCell>{item.name_kh || '---'}</TableCell>
                                 <TableCell>{item.short_description || '---'}</TableCell>
@@ -202,7 +201,7 @@ const MyTableData = () => {
                                             statuses={['active', 'inactive']}
                                         />
                                     ) : (
-                                        <span className='capitalize'>{item.status}</span>
+                                        <span className="capitalize">{item.status}</span>
                                     )}
                                 </TableCell>
                                 <TableCell>

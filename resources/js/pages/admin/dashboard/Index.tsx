@@ -17,7 +17,7 @@ export default function Page() {
     ];
 
     const { auth } = usePage().props;
-    console.log(auth.permissions);
+    // console.log(auth.permissions);
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <div className="flex flex-1 flex-col">

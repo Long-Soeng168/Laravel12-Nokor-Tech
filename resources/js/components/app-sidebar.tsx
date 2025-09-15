@@ -200,12 +200,12 @@ export function AppSidebar() {
             url: '/admin/messages',
             icon: MailsIcon,
         },
-        {
-            title: t('Teams'),
-            permission: '',
-            url: '/admin/teams',
-            icon: ContactRound,
-        },
+        // {
+        //     title: t('Teams'),
+        //     permission: '',
+        //     url: '/admin/teams',
+        //     icon: ContactRound,
+        // },
         {
             title: t('Banners'),
             permission: 'banner view',
@@ -276,12 +276,12 @@ export function AppSidebar() {
         //     url: '/admin/courses',
         //     icon: PresentationIcon,
         // },
-        {
-            title: t('Headings'),
-            permission: 'heading view',
-            url: '/admin/headings',
-            icon: Heading1Icon,
-        },
+        // {
+        //     title: t('Headings'),
+        //     permission: 'heading view',
+        //     url: '/admin/headings',
+        //     icon: Heading1Icon,
+        // },
         {
             title: t('Links'),
             permission: 'link view',

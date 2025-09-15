@@ -1,7 +1,8 @@
 import { Breadcrumbs } from '@/components/breadcrumbs';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { type BreadcrumbItem as BreadcrumbItemType } from '@/types';
-import { usePage } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
+import { HomeIcon } from 'lucide-react';
 import SwitchLanguageAdmin from './switch-language-admin';
 
 export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: BreadcrumbItemType[] }) {
@@ -17,6 +18,12 @@ export function AppSidebarHeader({ breadcrumbs = [] }: { breadcrumbs?: Breadcrum
                 {/* <span className='mr-1'>
                     <ToggleModeSwitch />
                 </span> */}
+                <Link href={`/`}>
+                    <button className="hover:bg-primary hover:text-background mr-1 flex h-8 items-center gap-2 cursor-pointer rounded-md border px-2 py-1 duration-300">
+                        <HomeIcon size={18} />
+                        Home Page
+                    </button>
+                </Link>
                 {can_switch_language == true && <SwitchLanguageAdmin />}
             </div>
         </header>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Heading;
+use App\Models\Item;
 use App\Models\ItemDailyView;
 use App\Models\Link;
 use App\Models\Page;
@@ -28,6 +29,7 @@ class DashboardController extends Controller
         $totalItemViews = ItemDailyView::query()->sum('view_counts');
 
 
+        $item_counts = Item::count();
         $post_counts = Post::count();
         $page_counts = Page::count();
         $link_counts = Link::count();
@@ -35,13 +37,14 @@ class DashboardController extends Controller
         $user_counts = User::count();
         $role_counts = Role::count();
         $permission_counts = Permission::count();
-        $heading_counts = Heading::count();
-        $project_counts = Project::count();
+        // $heading_counts = Heading::count();
+        // $project_counts = Project::count();
 
         // dd($post_daily_views);
         return Inertia::render('admin/dashboard/Index', [
             'item_daily_views_data' => $item_daily_views_data,
             'featureDatas' => [
+                'item_counts' => $item_counts,
                 'post_counts' => $post_counts,
                 'totalItemViews' => $totalItemViews,
                 'page_counts' => $page_counts,
@@ -50,8 +53,8 @@ class DashboardController extends Controller
                 'user_counts' => $user_counts,
                 'role_counts' => $role_counts,
                 'permission_counts' => $permission_counts,
-                'heading_counts' => $heading_counts,
-                'project_counts' => $project_counts,
+                // 'heading_counts' => $heading_counts,
+                // 'project_counts' => $project_counts,
             ]
         ]);
     }
