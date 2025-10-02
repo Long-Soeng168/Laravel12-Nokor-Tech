@@ -32,6 +32,10 @@ export function UserMenuContent({ user }: UserMenuContentProps) {
 
             <DropdownMenuGroup>
                 <DropdownMenuItem asChild>
+                    <Link className="block w-full" href={`/dashboard`} as="button" prefetch onClick={cleanup}>
+                        <Settings className="mr-2" />
+                        {t('Dashboard')}
+                    </Link>
                     <Link className="block w-full" href={route('profile.edit')} as="button" prefetch onClick={cleanup}>
                         <Settings className="mr-2" />
                         {t('Settings')}
