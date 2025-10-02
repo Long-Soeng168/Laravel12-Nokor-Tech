@@ -69,8 +69,9 @@ class ItemController extends Controller implements HasMiddleware
      */
     public function create(Request $request)
     {
+        $itemCategories = ItemCategory::where('parent_code', null)->with('children.children')->where('status', 'active')->orderBy('name')->orderBy('name')->get();
         return Inertia::render('admin/items/Create', [
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemCategories' => $itemCategories,
             'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
@@ -146,10 +147,12 @@ class ItemController extends Controller implements HasMiddleware
      */
     public function show(Item $item)
     {
+        $itemCategories = ItemCategory::where('parent_code', null)->with('children.children')->where('status', 'active')->orderBy('name')->orderBy('name')->get();
+
         return Inertia::render('admin/items/Create', [
-            'editData' => $item->load('images'),
+            'editData' => $item->load('images', 'category', 'brand'),
             'readOnly' => true,
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'itemCategories' => $itemCategories,
             'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),
@@ -163,9 +166,11 @@ class ItemController extends Controller implements HasMiddleware
 
     public function edit(Item $item)
     {
+        $itemCategories = ItemCategory::where('parent_code', null)->with('children.children')->where('status', 'active')->orderBy('name')->orderBy('name')->get();
+
         return Inertia::render('admin/items/Create', [
-            'editData' => $item->load('images'),
-            'itemCategories' => ItemCategory::where('status', 'active')->orderBy('id', 'desc')->get(),
+            'editData' => $item->load('images', 'category', 'brand'),
+            'itemCategories' => $itemCategories,
             'itemBrands' => ItemBrand::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemModels' => ItemModel::where('status', 'active')->orderBy('id', 'desc')->get(),
             'itemBodyTypes' => ItemBodyType::where('status', 'active')->orderBy('id', 'desc')->get(),

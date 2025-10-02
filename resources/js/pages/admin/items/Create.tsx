@@ -16,10 +16,11 @@ import { BreadcrumbItem } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm as inertiaUseForm, usePage } from '@inertiajs/react';
 import { Check, ChevronsUpDown, CloudUpload, Loader } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
+import CategorySelect from './components/category-select';
 
 const formSchema = z.object({
     name: z.string().min(1).max(255),
@@ -55,6 +56,7 @@ export default function Create() {
     const { post, progress, processing, transform, errors } = inertiaUseForm();
     const { itemCategories, itemBrands, itemModels, itemBodyTypes, editData, links, readOnly } = usePage().props;
 
+    const [finalCategorySelect, setFinalCategorySelect] = useState<any>(null);
     const [files, setFiles] = useState<File[] | null>(null);
     const [long_description, setLong_description] = useState(editData?.long_description || '');
     const [editorKey, setEditorKey] = useState(0);
@@ -76,6 +78,10 @@ export default function Create() {
         },
     });
 
+    useEffect(() => {
+        setFinalCategorySelect(editData?.category);
+    }, [editData]);
+
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             // console.log(values);
@@ -89,6 +95,7 @@ export default function Create() {
                 ...values,
                 long_description: long_description,
                 images: files || null,
+                category_code: finalCategorySelect?.code || null,
             }));
 
             if (editData?.id) {
@@ -96,6 +103,7 @@ export default function Create() {
                     preserveScroll: true,
                     onSuccess: (page) => {
                         setFiles(null);
+                        setFinalCategorySelect(null);
                         if (page.props.flash?.success) {
                             toast.success('Success', {
                                 description: page.props.flash.success,
@@ -121,6 +129,7 @@ export default function Create() {
                         setLong_description('');
                         setEditorKey((prev) => prev + 1);
                         setFiles(null);
+                        setFinalCategorySelect(null);
                         if (page.props.flash?.success) {
                             toast.success('Success', {
                                 description: page.props.flash.success,
@@ -285,7 +294,7 @@ export default function Create() {
                     />
 
                     <div className="grid grid-cols-6 gap-4 lg:grid-cols-12">
-                        <div className="col-span-6 flex space-x-2">
+                        {/* <div className="col-span-6 flex space-x-2">
                             <span className="flex-1">
                                 <FormField
                                     control={form.control}
@@ -302,80 +311,15 @@ export default function Create() {
                                     )}
                                 />
                             </span>
-                        </div>
+                        </div> */}
 
                         <div className="col-span-6">
-                            <FormField
-                                control={form.control}
-                                name="category_code"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col" key={field.value}>
-                                        <FormLabel>{t('Category')}</FormLabel>
-                                        <Popover>
-                                            <PopoverTrigger asChild>
-                                                <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
-                                                    >
-                                                        {field.value
-                                                            ? (() => {
-                                                                  const category = itemCategories?.find((category) => category.code === field.value);
-                                                                  return category ? `${category.name} (${category.name_kh})` : '';
-                                                              })()
-                                                            : t('Select category')}
-
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
-                                                </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="p-0">
-                                                <Command>
-                                                    <CommandInput placeholder="Search category..." />
-                                                    <CommandList>
-                                                        <CommandEmpty>{t('No data')}</CommandEmpty>
-                                                        <CommandGroup>
-                                                            <CommandItem
-                                                                value=""
-                                                                onSelect={() => {
-                                                                    form.setValue('category_code', '');
-                                                                }}
-                                                            >
-                                                                <Check
-                                                                    className={cn('mr-2 h-4 w-4', '' == field.value ? 'opacity-100' : 'opacity-0')}
-                                                                />
-                                                                {t('Select category')}
-                                                            </CommandItem>
-                                                            {itemCategories?.map((category) => (
-                                                                <CommandItem
-                                                                    value={category.name}
-                                                                    key={category.code}
-                                                                    onSelect={() => {
-                                                                        form.setValue('category_code', category.code);
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            'mr-2 h-4 w-4',
-                                                                            category.code === field.value ? 'opacity-100' : 'opacity-0',
-                                                                        )}
-                                                                    />
-                                                                    {category.parent_code && '--'}
-                                                                    {category.name}
-                                                                    {/* {category.name_kh && `(${category.name_kh})`} */}
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </CommandList>
-                                                </Command>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormDescription>{t('Select the category where this item belong to.')}</FormDescription>
-                                        <FormMessage>{errors.category_code && <div>{errors.category_code}</div>}</FormMessage>
-                                    </FormItem>
-                                )}
-                            />
+                            <div className="col-span-6 flex flex-col justify-start gap-2">
+                                <FormLabel className="p-0">{t('Category')}</FormLabel>
+                                <CategorySelect finalCategorySelect={finalCategorySelect} setFinalCategorySelect={setFinalCategorySelect} />
+                                <FormDescription>{t('Select the category where this item belong to.')}</FormDescription>
+                                <FormMessage>{errors.category_code && <div>{errors.category_code}</div>}</FormMessage>
+                            </div>
                         </div>
                         <div className="col-span-6">
                             <FormField
@@ -395,7 +339,7 @@ export default function Create() {
                                                         {field.value
                                                             ? (() => {
                                                                   const brand = itemBrands?.find((brand) => brand.code === field.value);
-                                                                  return brand ? `${brand.name} (${brand.name_kh})` : '';
+                                                                  return brand ? `${brand.name}` : '';
                                                               })()
                                                             : t('Select brand')}
 
@@ -435,7 +379,7 @@ export default function Create() {
                                                                             brand.code === field.value ? 'opacity-100' : 'opacity-0',
                                                                         )}
                                                                     />
-                                                                    {brand.name} {brand.name_kh && `(${brand.name_kh})`}
+                                                                    {brand.name} 
                                                                 </CommandItem>
                                                             ))}
                                                         </CommandGroup>
