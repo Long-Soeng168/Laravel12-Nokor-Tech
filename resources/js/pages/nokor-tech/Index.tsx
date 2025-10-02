@@ -76,7 +76,7 @@ const Index = ({ children }: NokorTechLayoutProps) => {
 
                         {posts?.length > 0 && (
                             <>
-                                <MyProductListHeader title={t('Blogs')} />
+                                <MyProductListHeader link='/blogs' title={t('Blogs')} />
                                 <MyBlogList posts={posts} />
                             </>
                         )}
