@@ -21,7 +21,7 @@ export function MyCategoriesNav() {
 
     return (
         <DropdownMenu open={openDropdown} onOpenChange={() => setOpenDropdown(false)}>
-            <DropdownMenuTrigger onMouseEnter={() => setOpenDropdown(true)} className="border-none outline-none">
+            <DropdownMenuTrigger onMouseEnter={() => setOpenDropdown(true)} className="border-none bg-muted rounded-md outline-none">
                 <span className="hover:text-primary group relative flex items-center gap-1 rounded p-2">
                     <p className="relative">
                         {t("Categories")}

@@ -15,7 +15,7 @@ const MyBrandList: React.FC<MyBrandListProps> = ({ items }) => {
                         prefetch
                         href={`/products?brand_code=${item?.code}`}
                         key={item?.id}
-                        className="group hover:border-primary flex h-full min-w-[110px] shrink-0 flex-col items-center justify-start gap-2 rounded-xl border bg-white px-2 py-2 transition-all duration-300 hover:shadow-sm sm:min-w-[130px] md:min-w-[150px] lg:min-w-[160px]"
+                        className="group hover:border-primary bg-white flex h-full min-w-[110px] shrink-0 flex-col items-center justify-start gap-2 rounded-xl border px-2 py-2 transition-all duration-300 hover:shadow-sm sm:min-w-[130px] md:min-w-[150px] lg:min-w-[160px]"
                     >
                         {item?.image && (
                             <img

@@ -15,7 +15,7 @@ const Index = () => {
     const { tableData, productListBanners } = usePage().props;
     return (
         <NokorTechLayout>
-            <div className="mx-auto mb-8 max-w-screen-xl">
+            <div className="mx-auto my-8 max-w-screen-xl">
                 <div className="flex">
                     {/* start left side */}
                     <div className="hidden w-64 lg:block">

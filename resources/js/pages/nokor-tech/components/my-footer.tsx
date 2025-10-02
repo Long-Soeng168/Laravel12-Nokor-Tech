@@ -33,7 +33,8 @@ export default function MyFooter() {
                                     alt={`${application_info?.name}'s logo`}
                                     className="rounded-full hover:cursor-pointer"
                                 />
-                                <p className="mt-2 text-2xl font-bold">{application_info?.name}</p>
+                                <p className="mt-2 text-2xl font-bold">{application_info?.name_kh}</p>
+                                <p className="text-xl font-bold">{application_info?.name}</p>
                             </div>
                         )}
                     </div>
@@ -82,23 +83,23 @@ export default function MyFooter() {
                                 </Link>
                             </li>
                             <li>
-                                <Link prefetch href="/shops" className="hover:underline">
-                                    {t('Shops')}
+                                <Link prefetch href="/blogs" className="hover:underline">
+                                    {t('Blogs')}
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link prefetch href="/privacy" className="hover:underline">
                                     {t('Privacy')}
+                                </Link>
+                            </li> */}
+                            <li>
+                                <Link prefetch href="/about-us" className="hover:underline">
+                                    {t('About')}
                                 </Link>
                             </li>
                             <li>
                                 <Link prefetch href="/contact-us" className="hover:underline">
                                     {t('Contact')}
-                                </Link>
-                            </li>
-                            <li>
-                                <Link prefetch href="/about-us" className="hover:underline">
-                                    {t('About')}
                                 </Link>
                             </li>
                         </ul>
