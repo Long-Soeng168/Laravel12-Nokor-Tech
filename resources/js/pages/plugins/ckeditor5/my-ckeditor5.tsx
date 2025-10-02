@@ -326,7 +326,7 @@ export default function MyCkeditor5({ data, setData }: { data: string; setData: 
                 },
                 list: {
                     properties: {
-                        styles: true,
+                        styles: false,
                         startIndex: true,
                         reversed: true,
                     },
