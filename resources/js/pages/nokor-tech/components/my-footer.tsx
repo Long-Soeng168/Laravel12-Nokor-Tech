@@ -33,7 +33,7 @@ export default function MyFooter() {
                                     alt={`${application_info?.name}'s logo`}
                                     className="rounded-full hover:cursor-pointer"
                                 />
-                                <p className="mt-2 text-2xl font-bold">{application_info?.name_kh}</p>
+                                <p className="mt-2 text-3xl font-bold">{application_info?.name_kh}</p>
                                 <p className="text-xl font-bold">{application_info?.name}</p>
                             </div>
                         )}
