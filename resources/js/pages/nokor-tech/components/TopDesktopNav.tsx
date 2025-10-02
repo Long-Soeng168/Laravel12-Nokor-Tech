@@ -32,7 +32,7 @@ export function TopDesktopNav() {
                 {/* Main Nav Links */}
                 {navLinks.map(({ label, href }) => (
                     <NavigationMenuItem key={href}>
-                        <NavigationMenuLink asChild className={`${navigationMenuTriggerStyle()} ${isActive(href) ? 'text-primary font-bold' : ''}`}>
+                        <NavigationMenuLink asChild className={`ml-1 ${navigationMenuTriggerStyle()} ${isActive(href) ? 'text-primary font-bold' : ''}`}>
                             <Link href={href} prefetch>
                                 {label}
                             </Link>

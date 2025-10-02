@@ -25,7 +25,7 @@ export function MyCategoriesNav() {
                 <span className="hover:text-primary group relative flex items-center gap-1 rounded p-2">
                     <p className="relative">
                         {t("Categories")}
-                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all group-hover:w-full"></span>
+                        <span className="bg-primary absolute -bottom-1 left-0 h-0.5 w-0 transition-all hover:w-full"></span>
                     </p>{' '}
                     <ChevronDown size={18} className="translate-y-[1px]" />
                 </span>
