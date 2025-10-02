@@ -10,7 +10,7 @@ const MySearchProductsDialog = () => {
             <Sheet open={searchOpenDialog} onOpenChange={setSearchOpenDialog}>
                 <SheetTrigger asChild>
                     <button
-                        className={`dark:bg-foreground/30 mr-1 ml-3 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-115`}
+                        className={`dark:bg-foreground/30 mr-1 ml-3 flex size-9 border cursor-pointer items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-115`}
                     >
                         <SearchIcon className="size-6" />
                     </button>
